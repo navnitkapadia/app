@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script> 
+  <title>jQuery Example</title>
+  <script>
+      
+$(document).ready(function () {
+    FB.init({
+        appId: '2100813633278010',
+        cookie: true,
+        xfbml: true,
+        version: 'v2.10'
+    });
+    checkLoginState();
+});
+function checkLoginState() {
+    FB.getLoginStatus(function (response) {
+        console.log(response);
+    });
+    FB.api('/me', 
+           {fields: "id,about,picture,birthday,email,cover,gender,hometown,location,name"}, function (response) {
+               console.log(response); 
+          });
+
+
+}
+  </script>
+</head>
+<body>
+     <div> <fb:login-button
+                            scope="public_profile,email"
+                            onlogin="checkLoginState();">
+                        </fb:login-button>
+                    </div>
+                    <div id="status"></div>
+                    <img src="https://scontent.xx.fbcdn.net/v/t1.0-9/s720x720/14632947_1060501097391087_3037640310630121233_n.jpg?oh=e7063e5995741a1136db29b032cd3605&oe=5A2E4055" alt="">
+</body>
+</html> 
